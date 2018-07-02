@@ -1,5 +1,5 @@
 {
-  "name": "react-data-export",
+  "name": "@prolaera/react-data-export-width",
   "version": "0.4.2",
   "main": "dist/index.js",
   "description": "A set of tools to export dataset from react to different formats.",
@@ -72,5 +72,9 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
   }
 }
