@@ -1,6 +1,6 @@
 {
   "name": "@prolaera/react-data-export-width",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "main": "dist/index.js",
   "description": "A set of tools to export dataset from react to different formats.",
   "repository": {
