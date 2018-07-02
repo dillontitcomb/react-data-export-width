@@ -98,7 +98,6 @@ var excelSheetFromDataSet = function excelSheetFromDataSet(dataSet) {
           ); /* wch (chars), wpx (pixels) - e.g. [{wch:6},{wpx:50}] */
         }
         getHeaderCell(colTitle, cellRef, ws);
-        getHeaderCell(col, cellRef, ws);
       });
 
       rowCount += 1;
