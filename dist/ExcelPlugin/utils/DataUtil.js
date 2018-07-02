@@ -1,31 +1,17 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.excelSheetFromDataSet = exports.excelSheetFromAoA = exports.dateToNumber = exports.strToArrBuffer = undefined;
 
-var _typeof =
-  typeof Symbol === 'function' && typeof Symbol.iterator === 'symbol'
-    ? function(obj) {
-        return typeof obj;
-      }
-    : function(obj) {
-        return obj &&
-          typeof Symbol === 'function' &&
-          obj.constructor === Symbol &&
-          obj !== Symbol.prototype
-          ? 'symbol'
-          : typeof obj;
-      };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _xlsx = require('xlsx');
 
 var _xlsx2 = _interopRequireDefault(_xlsx);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var strToArrBuffer = function strToArrBuffer(s) {
   var buf = new ArrayBuffer(s.length);
@@ -67,12 +53,10 @@ var excelSheetFromDataSet = function excelSheetFromDataSet(dataSet) {
   var range = { s: { c: 10000000, r: 10000000 }, e: { c: 0, r: 0 } };
   var rowCount = 0;
 
-  dataSet.forEach(function(dataSetItem) {
+  dataSet.forEach(function (dataSetItem) {
     var columns = dataSetItem.columns;
-    var xSteps =
-      typeof dataSetItem.xSteps === 'number' ? dataSetItem.xSteps : 0;
-    var ySteps =
-      typeof dataSetItem.ySteps === 'number' ? dataSetItem.ySteps : 0;
+    var xSteps = typeof dataSetItem.xSteps === 'number' ? dataSetItem.xSteps : 0;
+    var ySteps = typeof dataSetItem.ySteps === 'number' ? dataSetItem.ySteps : 0;
     var data = dataSetItem.data;
     if (dataSet === undefined || dataSet.length === 0) {
       return;
@@ -82,20 +66,16 @@ var excelSheetFromDataSet = function excelSheetFromDataSet(dataSet) {
     var columnsWidth = [];
 
     if (columns.length >= 0) {
-      columns.forEach(function(col, index) {
+      columns.forEach(function (col, index) {
         var cellRef = _xlsx2.default.utils.encode_cell({
           c: xSteps + index,
           r: rowCount
         });
         fixRange(range, 0, 0, rowCount, xSteps, ySteps);
         var colTitle = col;
-        if (
-          (typeof col === 'undefined' ? 'undefined' : _typeof(col)) === 'object'
-        ) {
+        if ((typeof col === 'undefined' ? 'undefined' : _typeof(col)) === 'object') {
           colTitle = col.title;
-          columnsWidth.push(
-            col.width || { wpx: 80 }
-          ); /* wch (chars), wpx (pixels) - e.g. [{wch:6},{wpx:50}] */
+          columnsWidth.push(col.width || { wpx: 80 }); /* wch (chars), wpx (pixels) - e.g. [{wch:6},{wpx:50}] */
         }
         getHeaderCell(colTitle, cellRef, ws);
       });
@@ -109,10 +89,7 @@ var excelSheetFromDataSet = function excelSheetFromDataSet(dataSet) {
 
     for (var R = 0; R != data.length; ++R, rowCount++) {
       for (var C = 0; C != data[R].length; ++C) {
-        var cellRef = _xlsx2.default.utils.encode_cell({
-          c: C + xSteps,
-          r: rowCount
-        });
+        var cellRef = _xlsx2.default.utils.encode_cell({ c: C + xSteps, r: rowCount });
         fixRange(range, R, C, rowCount, xSteps, ySteps);
         getCell(data[R][C], cellRef, ws);
       }
@@ -150,9 +127,7 @@ function getCell(v, cellRef, ws) {
     cell.t = 'n';
     cell.z = _xlsx2.default.SSF._table[14];
     cell.v = dateToNumber(cell.v);
-  } else if (
-    (typeof v === 'undefined' ? 'undefined' : _typeof(v)) === 'object'
-  ) {
+  } else if ((typeof v === 'undefined' ? 'undefined' : _typeof(v)) === 'object') {
     cell.v = v.value;
     cell.s = v.style;
   } else {
