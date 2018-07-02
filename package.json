@@ -5,7 +5,7 @@
   "description": "A set of tools to export dataset from react to different formats.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/securedeveloper/react-data-export.git"
+    "url": "git+https://github.com/dillontitcomb/react-data-export-width.git"
   },
   "keywords": [
     "react-data-export",
